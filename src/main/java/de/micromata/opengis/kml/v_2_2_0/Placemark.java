@@ -70,7 +70,8 @@ import de.micromata.opengis.kml.v_2_2_0.xal.AddressDetails;
 @XmlType(name = "PlacemarkType", propOrder = {
     "geometry",
     "placemarkSimpleExtension",
-    "placemarkObjectExtension"
+    "placemarkObjectExtension",
+    "imapCommand"
 })
 @XmlRootElement(name = "Placemark", namespace = "http://www.opengis.net/kml/2.2")
 public class Placemark

@@ -111,10 +111,10 @@ public class ImapCommand implements Cloneable{
     }
 
     @Override
-    public ExtendedData clone() {
-        ExtendedData copy;
+    public ImapCommand clone() {
+        ImapCommand copy;
         try {
-            copy = ((ExtendedData) super.clone());
+            copy = ((ImapCommand) super.clone());
         } catch (CloneNotSupportedException _x) {
             throw new InternalError((_x.toString()));
         }
