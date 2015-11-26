@@ -131,6 +131,10 @@ public class Placemark
     @XmlElement(name = "PlacemarkObjectExtensionGroup")
     protected List<AbstractObject> placemarkObjectExtension;
 
+    @XmlElement(name = "imap:Command")
+    protected ImapCommand imapCommand;
+
+
     public Placemark() {
         super();
     }
@@ -266,6 +270,12 @@ public class Placemark
         MultiTrack newValue = new MultiTrack();
         this.setGeometry(newValue);
         return newValue;
+    }
+
+    public ImapCommand createAndSetImapCommand(){
+        ImapCommand imapCommand = new ImapCommand();
+        this.imapCommand = imapCommand;
+        return imapCommand;
     }
 
     /**
