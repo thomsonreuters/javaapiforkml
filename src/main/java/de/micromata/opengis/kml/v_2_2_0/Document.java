@@ -162,6 +162,7 @@ public class Document
      * @see: <Overlay>
      * @see: <Placemark>
      * @see: <gx:Tour>
+     *   @see: <ImapAlertDefinition>
      * 
      * 
      * 
@@ -438,6 +439,12 @@ public class Document
         Placemark newValue = new Placemark();
         this.getFeature().add(newValue);
         return newValue;
+    }
+
+    public ImapAlertDefinition createAndAddImapAlertDefinition(){
+        ImapAlertDefinition imapAlertDefinition = new ImapAlertDefinition();
+        this.getFeature().add(imapAlertDefinition);
+        return imapAlertDefinition;
     }
 
     /**

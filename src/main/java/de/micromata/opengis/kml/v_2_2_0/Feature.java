@@ -92,7 +92,8 @@ import de.micromata.opengis.kml.v_2_2_0.xal.Thoroughfare;
     Overlay.class,
     NetworkLink.class,
     Container.class,
-    Placemark.class
+    Placemark.class,
+    ImapAlertDefinition.class
 })
 public abstract class Feature
     extends AbstractObject

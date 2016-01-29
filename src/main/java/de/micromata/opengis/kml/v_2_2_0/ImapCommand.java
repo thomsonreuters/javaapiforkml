@@ -2,16 +2,12 @@ package de.micromata.opengis.kml.v_2_2_0;
 
 import javax.xml.bind.annotation.*;
 
-/**
- * Created by cato on 26/11/2015.
- */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ImapCommandType", propOrder = {
         "displayName",
         "href"
 })
-@XmlRootElement(name = "imap:Command", namespace = "http://www.opengis.net/kml/2.2")
+@XmlRootElement(name = "imap:Command", namespace = "http://www.thomsonreuters.com/ns/2013/11/mapping/kml")
 public class ImapCommand implements Cloneable{
 
     @XmlElement(name = "displayName")
@@ -28,42 +24,19 @@ public class ImapCommand implements Cloneable{
         return displayName;
     }
 
-    /**
-     *
-     * @param value
-     *     allowed object is
-     *     {@link String}
-     *
-     */
-    public void setDisplayName(String value) {
-        this.displayName = value;
-    }
-
-    /**
-     *
-     * @return
-     *     possible object is
-     *     {@link String}
-     *
-     */
     public String getHref() {
         return href;
     }
 
-    /**
-     *
-     * @param href
-     *     allowed object is
-     *     {@link String}
-     *
-     */
-    public void setHref(String href) {
+    public ImapCommand setHref(String href) {
         this.href = href;
+        return this;
     }
 
-    /**
-     *
-     */
+    public ImapCommand setDisplayName(String displayName){
+        this.displayName = displayName;
+        return this;
+    }
 
     @Override
     public int hashCode() {
@@ -85,7 +58,7 @@ public class ImapCommand implements Cloneable{
         if (super.equals(obj) == false) {
             return false;
         }
-        if ((obj instanceof Data) == false) {
+        if ((obj instanceof ImapCommand) == false) {
             return false;
         }
         ImapCommand other = ((ImapCommand) obj);

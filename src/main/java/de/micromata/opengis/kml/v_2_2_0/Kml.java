@@ -967,7 +967,11 @@ public class Kml implements Cloneable
             if (namespaceUri.matches("http://www.google.com/kml/ext/.*?")) {
                 return "gx";
             }
-            return null;
+            if(namespaceUri.matches("http://www.thomsonreuters.com/ns/2013/11/mapping/kml")){
+                return "imap";
+            }
+
+            return "";
         }
 
     }

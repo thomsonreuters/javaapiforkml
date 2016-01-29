@@ -69,9 +69,11 @@ import de.micromata.opengis.kml.v_2_2_0.xal.AddressDetails;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PlacemarkType", propOrder = {
     "geometry",
+    "ric",
     "placemarkSimpleExtension",
     "placemarkObjectExtension",
-    "imapCommand"
+    "imapCommand",
+    "imapCommands"
 })
 @XmlRootElement(name = "Placemark", namespace = "http://www.opengis.net/kml/2.2")
 public class Placemark
@@ -135,9 +137,34 @@ public class Placemark
     @XmlElement(name = "imap:Command")
     protected ImapCommand imapCommand;
 
+    @XmlElement(name = "imap:Commands")
+    protected ImapCommands imapCommands;
+
+    @XmlElement(name = "imap:ric")
+    protected String ric;
+
+    public Placemark setRic(String ric){
+        this.ric = ric;
+        return this;
+    }
 
     public Placemark() {
         super();
+    }
+
+    public ImapCommands createAndSetImapCommands(){
+        this.imapCommands = new ImapCommands();
+        return this.imapCommands;
+    }
+
+    public ImapCommands getImapCommands(){
+        if(this.imapCommands == null) this.imapCommands = new ImapCommands();
+        return this.imapCommands;
+    }
+
+    public Placemark withImapCommands(ImapCommands imapCommands){
+        this.imapCommands = imapCommands;
+        return this;
     }
 
     /**
