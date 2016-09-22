@@ -15,25 +15,17 @@
 // ///////////////////////////////////////////////////////////////////////////
 package de.micromata.jak;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.StringReader;
-import java.io.StringWriter;
-import java.lang.reflect.Field;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.PropertyException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.namespace.QName;
-import javax.xml.transform.stream.StreamSource;
-
 import org.apache.log4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
-import de.micromata.opengis.kml.v_2_2_0.Kml;
+import javax.xml.bind.*;
+import javax.xml.namespace.QName;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.stream.StreamSource;
+import java.io.*;
+import java.lang.reflect.Field;
 
 public final class Utils {
 	private static final Logger LOG = Logger.getLogger(Utils.class.getName());
@@ -230,4 +222,26 @@ public final class Utils {
 		return object.getClass().getName() + "_notFound";
 	}
 
+	public static <T> Element marshalToXmlElement(T object) {
+		Element element = null;
+		Class<T> clazz = (Class<T>) object.getClass();
+		try {
+			JAXBContext jc = createJAXBContext(clazz);
+			Marshaller m = createMarshaller(jc);
+
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			m.marshal(object, out);
+
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
+			Document doc = dBuilder.parse(in);
+			doc.getDocumentElement().normalize();
+			element = doc.getDocumentElement();
+
+		} catch (Exception e) {
+			LOG.info("Exception encountered " + e);
+		}
+		return element;
+	}
 }
